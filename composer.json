@@ -17,6 +17,6 @@
             "Lyon1\\Bundle\\PoobleBundle" : ""
         }
     },
-    "target-dir": "Lyon1\\Bundle\\PoobleBundle",
+    "target-dir": "Lyon1/Bundle/PoobleBundle",
     "minimum-stability": "dev"
 }

@@ -1,0 +1,33 @@
+services:
+
+    pooble.form.type.configure_choice:
+        class: Lyon1\Bundle\PoobleBundle\Form\SurveyConfigureChoiceType
+        arguments: []
+        tags:
+            - { name: form.type, alias: configure_choice }
+
+    pooble.form.type.configure_date:
+        class: Lyon1\Bundle\PoobleBundle\Form\SurveyConfigureDateType
+        arguments: []
+        tags:
+            - { name: form.type, alias: configure_date }
+
+    pooble.form.type.times_selector:
+        class: Lyon1\Bundle\PoobleBundle\Form\TimesSelectorType
+        arguments: []
+        tags:
+            - { name: form.type, alias: times_selector }
+
+    pooble.tokenizer:
+        class: Lyon1\Bundle\PoobleBundle\Token\Tokenizer
+        arguments: [%kernel.secret%]
+
+    pooble.subscriber.survey:
+        class: Lyon1\Bundle\PoobleBundle\Subscriber\SurveySubscriber
+        arguments: [@pooble.tokenizer]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+
+    pooble.cleaner.survey:
+        class: Lyon1\Bundle\PoobleBundle\Cleaner\SurveyCleaner
+        

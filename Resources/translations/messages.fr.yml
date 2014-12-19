@@ -1,0 +1,24 @@
+'Welcome to pooble application': 'Bienvenue sur pooble application'
+'Create a new survey': 'Créer un nouveau sondage'
+'Create a new "Pooble"': 'Créer un nouveau "Pooble"'
+'Configure your "Pooble"': 'Configurer votre "Pooble"'
+'Participant name': 'Nom du participant'
+'created on': 'créé le'
+'Pooble created !': 'Pooble créé !'
+'Take the survey': 'Participer au sondage'
+'Add an item': 'Rajouter un item'
+'Delete this item': 'Supprimer cet item'
+Name: Nom
+Location: Lieu
+Create: Créer
+Category: Catégorie
+Configure: Configurer
+New: Nouveau
+Created: Créé
+End: Fin
+contains: contenant
+Next: Suivant
+Back: Précédent
+choice: 'liste de choix'
+'Time start': 'Heure de début'
+'Time end': 'Heure de fin'

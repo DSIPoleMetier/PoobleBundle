@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} {% trans %}Configure{% endtrans %}{% endblock %}
+
+{% block body %}
+    {% include 'PoobleBundle:WizardSurvey:breadcrumb.html.twig' %}
+
+
+    <div class="row">
+        <div class="small-12">
+    <h1>{% trans %}Configure your "Pooble"{% endtrans %}</h1>     
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="small-12">
+    {{ form(form) }}    
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        var collectionHolder = $('div#{{ form_type }}_items');
+
+        var $addItemLink = $('<a href="#" class="add_item_link">{% trans %}Add an item{% endtrans %}</a>');
+        var $newLinkLi = $('<ul></ul>').append($addItemLink);
+
+        jQuery(document).ready(function() {
+            collectionHolder.append($newLinkLi);
+
+            $addItemLink.on('click', function(e) {
+                e.preventDefault();
+                addItemForm(collectionHolder, $newLinkLi);
+            });
+
+            collectionHolder.find('li').each(function() {
+                addItemFormDeleteLink($(this));
+            });
+        });
+
+        function addItemForm(collectionHolder, $newLinkLi) {
+            var prototype = collectionHolder.attr('data-prototype');
+
+            var newForm = prototype.replace(/__name__/g, collectionHolder.children().length);
+
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+            addItemFormDeleteLink($newFormLi);
+        }
+
+        function addItemFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a href="#">{% trans %}Delete this item{% endtrans %}</a>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                e.preventDefault();
+                $tagFormLi.remove();
+            });
+        }
+
+    </script>
+{% endblock %}

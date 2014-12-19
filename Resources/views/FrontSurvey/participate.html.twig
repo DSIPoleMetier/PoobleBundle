@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>{{ survey.name }}</h1>
+    <p>{{ survey.description }}</p>
+    {% if (form is defined) %}
+        {{ form_start(form) }}
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <td>Nom du participant</td>
+                {% for item in survey.items %}
+                    <td>{{ item.name }}</td>
+                {% endfor %}
+        </thead>
+        <tbody>
+            {% for answer in survey.answers %}
+                <tr>
+                    <th>{{ answer.name }}</th>
+                    {% for answerItem in answer.answerItems %}
+                        <td>
+                        <input type="checkbox" disabled="disabled" {% if answerItem.value == 1 %}checked="checked"{% endif %} />
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            {% if (form is defined) %}
+                <tr>
+                    <th>{{ form_row(form.name) }}</th>
+                    {% for item in survey.items %}
+                        <td>{{ form_widget(form.offsetGet('item_'~item.id)) }}</td>
+                    {% endfor %}
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    {% if (form is defined) %}
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}

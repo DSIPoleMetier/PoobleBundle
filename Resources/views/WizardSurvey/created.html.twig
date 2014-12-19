@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} {% trans %}Created{% endtrans %}{% endblock %}
+
+{% block body %}
+    {% include 'PoobleBundle:WizardSurvey:breadcrumb.html.twig' %}
+
+
+    <div class="row">
+    	<div class="small-12">
+    	<h1>{% trans %}Pooble created !{% endtrans %}</h1>			
+		</div>
+	</div>
+
+
+	<div class="row">
+    	<div class="small-12">
+    		<a href="{{ path('participate', { 'token': survey.token }) }}">{% trans %}Take the survey{% endtrans %} : {{ survey.name }}</a><br>
+     		{{ survey.description }}
+     		<br>
+     		{% trans %}created on{% endtrans %} {{ survey.createdAt|date('d/m/Y') }}<br>
+     		{% trans %}contains{% endtrans %} {{ survey.items | length }} item{% if survey.items | length >1 %}s{% endif %}  			
+		</div>
+	</div>
+
+
+{% endblock %}

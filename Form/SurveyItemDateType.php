@@ -20,7 +20,9 @@ class SurveyItemDateType extends SurveyItemType
 
         $builder
             ->add(
-                $builder->create('name', 'date')
+                $builder->create('name', 'date', array(
+                    'widget' => 'single_text'
+                ))
                     ->addModelTransformer($transformer)
             )
             ->add('description', 'times_selector')
